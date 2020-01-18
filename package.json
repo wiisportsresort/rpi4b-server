@@ -1,0 +1,13 @@
+{
+  "name": "rpi4b-test",
+  "version": "1.0.0",
+  "description": "i tried ok",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "wiisportsresorts",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
