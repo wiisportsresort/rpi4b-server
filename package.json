@@ -24,5 +24,11 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "dependencies": {
+    "material-components-web": "^4.0.0"
   }
 }
