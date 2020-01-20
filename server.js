@@ -1,17 +1,32 @@
+const fs = require('fs');
+const https = require('https');
+const express = require("express");
 const date = require('./dateFormat');
-const express = require('express');
+
 const app = express();
-const port = 443;
 const stdin = process.stdin;
 
-app.use(express.static('dist'));
-
+// Timestamped logging
 const bind = (dir, file) => app.get(dir, (req, res) => res.sendFile(__dirname + '/' + file));
 const logBlank = console.log;
 console.log = function(message) {
     logBlank(date.format(new Date(), 'm/d/y \\a\\t H:i:s') + ': server.js: ' + message);
 };
 
+// Certificate
+const privateKey  = fs.readFileSync('/etc/letsencrypt/live/wiisportsresorts.dev/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/wiisportsresorts.dev/cert.pem',    'utf8');
+const ca          = fs.readFileSync('/etc/letsencrypt/live/wiisportsresorts.dev/chain.pem',   'utf8');
+
+const credientials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca
+};
+const httpsServer = https.createServer(credientials, app);
+
+
+app.use(express.static("dist"));
 bind('/', 'index.html');
 
 // without this, we would only get streams once enter is pressed
@@ -40,7 +55,7 @@ stdin.on('data', function(key) {
     }
 });
 
-const listener = app.listen(port, appMessage(true));
+const listener = httpsServer.listen(443, appMessage(true));
 function appMessage(first = false) {
     if (first) console.log(`Express app started on port ${port}.`);
     console.log(`Keybinds:`);
