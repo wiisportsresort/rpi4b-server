@@ -1,3 +1,7 @@
+# linter configurations
+.jshintrc
+.prettierrc
+
 # Logs
 logs
 *.log
