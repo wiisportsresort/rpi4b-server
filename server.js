@@ -1,7 +1,7 @@
 const date = require('./dateFormat');
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 443;
 const stdin = process.stdin;
 
 app.use(express.static('dist'));
@@ -13,7 +13,6 @@ console.log = function(message) {
 };
 
 bind('/', 'index.html');
-bind('/a', 'test.html');
 
 // without this, we would only get streams once enter is pressed
 stdin.setRawMode(true);
