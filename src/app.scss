@@ -1,6 +1,13 @@
 @import "theme";
+@import "components";
 
 html, body {
-    background-color: #efefef;
-    font-family: $font;
+    background-color: #f0f0f0;
+    font-family: $mdc-typography-font-family;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    margin: 16px;
 }
