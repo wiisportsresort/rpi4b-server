@@ -27,6 +27,7 @@ const httpsServer = https.createServer(credientials, app);
 
 
 app.use(express.static("dist"));
+app.use(express.static("public"));
 bind('/', 'index.html');
 
 // without this, we would only get streams once enter is pressed
