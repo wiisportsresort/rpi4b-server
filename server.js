@@ -57,7 +57,7 @@ stdin.on('data', function(key) {
 
 const listener = httpsServer.listen(443, appMessage(true));
 function appMessage(first = false) {
-    if (first) console.log(`Express app started on port ${port}.`);
+    if (first) console.log(`Express app started on port 443.`);
     console.log(`Keybinds:`);
     console.log(`h: show this help menu`);
     console.log(`q: exit this app`);
