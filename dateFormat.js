@@ -1,3 +1,4 @@
+/*jshint ignore:start*/
 function dateFormat(g, c, k) {
     function l(a, b) {
         a.setHours(a.getHours() + parseFloat(b));
