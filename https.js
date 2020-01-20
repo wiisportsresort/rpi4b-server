@@ -7,7 +7,6 @@ const app = express();
 const stdin = process.stdin;
 
 // Timestamped logging
-const bind = (dir, file) => app.get(dir, (req, res) => res.sendFile(__dirname + '/' + file));
 const logBlank = console.log;
 console.log = function(message) {
     logBlank(date.format(new Date(), 'm/d/y \\a\\t H:i:s') + ': server.js: ' + message);
@@ -25,9 +24,10 @@ const credientials = {
 };
 const httpsServer = https.createServer(credientials, app);
 
-
 app.use(express.static("dist"));
 app.use(express.static("public"));
+
+const bind = (dir, file) => app.get(dir, (req, res) => res.sendFile(__dirname + '/' + file));
 bind('/', 'index.html');
 
 // without this, we would only get streams once enter is pressed

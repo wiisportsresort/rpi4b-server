@@ -6,8 +6,10 @@
     "build": "webpack -p",
     "test": "webpack -p",
     "serve": "webpack-dev-server --host 0.0.0.0 --hot --open --useLocalIp",
-    "debug": "webpack -p && DEBUG=express:* node server.js",
-    "start": "webpack -p && node server.js"
+    "debugHttp": "webpack -p && DEBUG=express:* node http.js",
+    "startHttp": "webpack -p && node http.js",
+    "debugHttps": "webpack -p && DEBUG=express:* node https.js",
+    "startHttps": "webpack -p && node https.js"
   },
   "author": "wiisportsresorts",
   "license": "MIT",
