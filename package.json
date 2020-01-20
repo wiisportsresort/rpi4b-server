@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack -p",
     "test": "webpack -p",
-    "start": "webpack-dev-server --host 0.0.0.0 --hot --open --useLocalIp"
+    "serve": "webpack-dev-server --host 0.0.0.0 --hot --open --useLocalIp",
+    "debug": "webpack -p && DEBUG=express:* node server.js",
+    "start": "webpack =p && node server.js"
   },
   "author": "wiisportsresorts",
   "license": "MIT",
@@ -29,6 +31,7 @@
     "node": "10.x"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "material-components-web": "^4.0.0"
   }
 }
