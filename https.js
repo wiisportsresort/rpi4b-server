@@ -13,9 +13,9 @@ console.log = function(message) {
 };
 
 // Certificate
-const privateKey = fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/privkey.pem", "utf8");
-const certificate = fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/cert.pem", "utf8");
-const ca = fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/chain.pem", "utf8");
+const privateKey =  fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/privkey.pem", "utf8");
+const certificate = fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/cert.pem",    "utf8");
+const ca =          fs.readFileSync("/etc/letsencrypt/live/wiisportsresorts.dev/chain.pem",   "utf8");
 
 const credientials = {
   key: privateKey,
@@ -29,15 +29,6 @@ app.use(express.static("public"));
 
 const bind = (dir, file) => app.get(dir, (req, res) => res.sendFile(__dirname + "/" + file));
 bind("/", "index.html");
-
-bind(
-  "/.well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GI",
-   ".well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GI"
-);
-bind(
-  "/.well-known/acme-challenge/DGlE-ue8fFBTCbbyks2JvSQiukYOnnGyLMe8diH4i5o",
-   ".well-known/acme-challenge/DGlE-ue8fFBTCbbyks2JvSQiukYOnnGyLMe8diH4i5o"
-);
 
 // without this, we would only get streams once enter is pressed
 stdin.setRawMode(true);
