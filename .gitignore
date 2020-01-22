@@ -2,6 +2,9 @@
 .jshintrc
 .prettierrc
 
+# ACME challenge
+.well-known/acme-challenge
+
 # Logs
 logs
 *.log
