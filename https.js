@@ -30,7 +30,7 @@ app.use(express.static("public"));
 const bind = (dir, file) => app.get(dir, (req, res) => res.sendFile(__dirname + '/' + file));
 bind('/', 'index.html');
 
-bind('/.well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GIv', '.well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GI');
+bind('/.well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GI', '.well-known/acme-challenge/A5-ZHBYp1wyMr_eu1oudEN0euNVcE8nlFl5RNZSe_GI');
 
 
 // without this, we would only get streams once enter is pressed
