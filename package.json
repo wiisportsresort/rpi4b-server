@@ -3,14 +3,24 @@
   "version": "2.0.0-alpha",
   "description": "website",
   "scripts": {
-    "start": "concurrently -n build:frontend,build:backend -c \"white.bgBlue.bold,white.bgCyan.bold\" \"pnpm run build-frontend\" \"pnpm run build-backend\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server\"",
-    "dev": "concurrently -n build:frontend,build:backend,server -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run build-frontend:watch\" \"pnpm run build-backend:watch\" \"pnpm run server:watch\"",
-    "build-frontend": "webpack -p --config webpack.frontend.js",
-    "build-backend": "webpack -p --config webpack.backend.js",
-    "build-frontend:watch": "webpack -d --config webpack.frontend.js --watch",
-    "build-backend:watch": "webpack -d --config webpack.backend.js --watch",
-    "server": "node \"./dist/backend/index.js\"",
-    "server:watch": "nodemon \"./dist/backend/index.js\""
+    "start": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f\" \"pnpm run bld-b\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server-ssl\"",
+    "dev": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon\"",
+    "debug": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon:debug\"",
+    "bld-f": "webpack -p --config-name frontend",
+    "bld-b": "webpack -p --config-name backend",
+    "bld-f:watch": "webpack -d --config-name frontend --watch",
+    "bld-b:watch": "webpack -d --config-name backend --watch",
+    "server-ssl": "node \"./dist/backend/https.js\"",
+    "nodemon": "nodemon \"./dist/backend/http.js\"",
+    "nodemon:debug": "nodemon --inspect \"./dist/backend/http.js\""
+  },
+  "config": {
+    "colors": "white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold",
+    "names": "bld:f,bld:b,server",
+    "built": {
+      "https": "./dist/backend/https.js",
+      "http": "./dist/backend/http.js"
+    }
   },
   "nodemonConfig": {
     "ignore": [
@@ -20,17 +30,24 @@
       "node_modules"
     ],
     "watch": [
-      "dist\/backend"
+      "dist"
     ]
   },
   "license": "MIT",
   "dependencies": {
+    "@blueprintjs/core": "^3.24.0",
+    "@blueprintjs/icons": "^3.14.0",
     "express": "^4.17.1",
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",
     "@types/node": "^13.9.5",
+    "@types/react": "^16.9.29",
+    "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "autoprefixer": "^9.7.5",
@@ -39,6 +56,7 @@
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
+    "file-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
