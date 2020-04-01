@@ -4,9 +4,13 @@ const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // const TerserPlugin = require('terser-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 dotenvConfig({ path: './.env' });
+// SSL_PATH, HTTPS_PORT, HTTP_PORT, WDS_PORT, BSP_PROXY_PORT
+
 
 module.exports = [
   /* ----------------------------------------------------------------------------------------------
@@ -84,6 +88,16 @@ module.exports = [
       extensions: ['.ts', '.tsx', '.js', '.json']
     },
     devtool: 'source-map',
+    devServer: {
+      contentBase: [
+        path.join(__dirname, 'dist/frontend'),
+        path.join(__dirname, 'views'),
+        path.join(__dirname, 'public')
+      ],
+      overlay: true,
+      compress: true,
+      port: process.env.WDS_PORT
+    },
     // optimization: {
     //   minimizer: [
     //     new TerserPlugin({
@@ -92,20 +106,37 @@ module.exports = [
     //   ]
     // },
     plugins: [
+      new BrowserSyncPlugin(
+        {
+          // browse to http://localhost:3000/ during development
+          host: 'localhost',
+          port: process.env.BSP_PROXY_PORT,
+          // proxy the Webpack Dev Server endpoint
+          proxy: 'http://localhost:' + process.env.WDS_PORT + '/'
+        },
+        {
+          // prevent BrowserSync from reloading the page
+          // and let Webpack Dev Server take care of this
+          reload: false
+        }
+      ),
+      // new webpack.IgnorePlugin(/react|react-dom/),
+      new BundleAnalyzerPlugin(),
       new MiniCSSExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css'
       })
     ],
-    // externals: {
-    //   react: "React",
-    //   "react-dom": "ReactDOM",
-    //   jquery: "$"
-    // },
-    stats: { all: true },
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM'
+    },
+    stats: {
+      children: false
+    },
     watchOptions: {
       ignored: ['public/**', 'node_modules/**'],
-      aggregateTimeout: 300
+      aggregateTimeout: 200
     },
     module: {
       rules: [
@@ -133,7 +164,7 @@ module.exports = [
           loader: 'source-map-loader'
         },
         {
-          test: /\.tsx?$/,
+          test: /\.ts(x?)$/,
           loader: 'ts-loader'
         }
       ]

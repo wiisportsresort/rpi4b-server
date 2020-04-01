@@ -2,25 +2,20 @@
   "name": "wiisportsresorts.dev",
   "version": "2.0.0-alpha",
   "description": "website",
+  "license": "MIT",
   "scripts": {
-    "start": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f\" \"pnpm run bld-b\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server-ssl\"",
-    "dev": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon\"",
-    "debug": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon:debug\"",
-    "bld-f": "webpack -p --config-name frontend",
     "bld-b": "webpack -p --config-name backend",
-    "bld-f:watch": "webpack -d --config-name frontend --watch",
+    "bld-b:dev": "webpack -d --config-name backend",
     "bld-b:watch": "webpack -d --config-name backend --watch",
-    "server-ssl": "node \"./dist/backend/https.js\"",
+    "bld-f": "webpack -p --config-name frontend",
+    "bld-f:watch": "webpack -d --config-name frontend --watch",
+    "debug": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon:debug\"",
+    "dev": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon\"",
+    "devserver": "webpack-dev-server --color --progress --config-name frontend",
     "nodemon": "nodemon \"./dist/backend/http.js\"",
-    "nodemon:debug": "nodemon --inspect \"./dist/backend/http.js\""
-  },
-  "config": {
-    "colors": "white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold",
-    "names": "bld:f,bld:b,server",
-    "built": {
-      "https": "./dist/backend/https.js",
-      "http": "./dist/backend/http.js"
-    }
+    "nodemon:debug": "nodemon --inspect \"./dist/backend/http.js\"",
+    "server-ssl": "node \"./dist/backend/https.js\"",
+    "start": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f\" \"pnpm run bld-b\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server-ssl\""
   },
   "nodemonConfig": {
     "ignore": [
@@ -33,17 +28,18 @@
       "dist"
     ]
   },
-  "license": "MIT",
   "dependencies": {
     "@blueprintjs/core": "^3.24.0",
     "@blueprintjs/icons": "^3.14.0",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
-    "normalize.css": "^8.0.1",
+    "js-cookie": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@blueprintjs/eslint-plugin-blueprint": "^0.1.0",
     "@types/express": "^4.17.3",
     "@types/node": "^13.9.5",
     "@types/react": "^16.9.29",
@@ -51,6 +47,8 @@
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "autoprefixer": "^9.7.5",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "concurrently": "^5.1.0",
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
@@ -60,14 +58,18 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
+    "normalize.css": "^8.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^2.3.5",
     "ts-loader": "^6.2.2",
+    "tslint": "^6.1.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
+    "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
     "webpack-node-externals": "^1.7.2"
   }
 }
