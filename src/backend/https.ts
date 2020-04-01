@@ -1,8 +1,8 @@
+import { config as dotenvConfig } from 'dotenv';
+import express from 'express';
 import fs from 'fs';
 import https from 'https';
-import express from 'express';
 import createRoutes from './routes';
-import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '../../.env' });
 
