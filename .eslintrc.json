@@ -16,7 +16,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "eslint-plugin-import"
+    "eslint-plugin-import",
+    "@blueprintjs/blueprint"
   ],
   "rules": {
     "no-unused-vars": "off"
