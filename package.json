@@ -13,10 +13,10 @@
     "debug": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon:debug\"",
     "dev": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f:watch\" \"pnpm run bld-b:watch\" \"pnpm run nodemon\"",
     "devserver": "webpack-dev-server --color --progress --config-name frontend",
-    "nodemon": "nodemon \"./dist/backend/http.js\"",
+    "nodemon": "nodemon dist/backend/http.js",
     "nodemon:debug": "nodemon --inspect \"./dist/backend/http.js\"",
     "server-ssl": "node \"./dist/backend/https.js\"",
-    "start": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f\" \"pnpm run bld-b\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server-ssl\""
+    "//": "concurrently -i -n \"bld:f,bld:b,server\" -c \"white.bgBlue.bold,white.bgCyan.bold,white.bgGreen.bold\" \"pnpm run bld-f\" \"pnpm run bld-b\" && concurrently -n server -c \"white.bgGreen.bold\" \"pnpm run server-ssl\""
   },
   "nodemonConfig": {
     "ignore": [

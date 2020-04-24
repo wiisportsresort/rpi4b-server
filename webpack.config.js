@@ -106,20 +106,20 @@ module.exports = [
     //   ]
     // },
     plugins: [
-      new BrowserSyncPlugin(
-        {
-          // browse to http://localhost:3000/ during development
-          host: 'localhost',
-          port: process.env.BSP_PROXY_PORT,
-          // proxy the Webpack Dev Server endpoint
-          proxy: 'http://localhost:' + process.env.WDS_PORT + '/'
-        },
-        {
-          // prevent BrowserSync from reloading the page
-          // and let Webpack Dev Server take care of this
-          reload: false
-        }
-      ),
+      // new BrowserSyncPlugin(
+      //   {
+      //     // browse to http://localhost:3000/ during development
+      //     host: 'localhost',
+      //     port: process.env.BSP_PROXY_PORT,
+      //     // proxy the Webpack Dev Server endpoint
+      //     proxy: 'http://localhost:' + process.env.WDS_PORT + '/'
+      //   },
+      //   {
+      //     // prevent BrowserSync from reloading the page
+      //     // and let Webpack Dev Server take care of this
+      //     reload: false
+      //   }
+      // ),
       // new webpack.IgnorePlugin(/react|react-dom/),
       new BundleAnalyzerPlugin(),
       new MiniCSSExtractPlugin({
