@@ -1,0 +1,53 @@
+@import '~normalize.css';
+@import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+@import '~@blueprintjs/core/lib/scss/variables';
+
+// Fixed navbar adjust (use navbar height)
+$pt-navbar-height: 50px;
+
+body {
+  // Fixed navbar adjust
+  padding-top: $pt-navbar-height;
+  & * {
+    transition: background-color 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
+  }
+  &.bp3-dark .main {
+    background: $pt-dark-app-background-color;
+  }
+}
+
+$margins: 2, 3, 4, 6, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64;
+
+@each $i in $margins {
+  .m-#{$i} {
+    margin: $i * 1px;
+  }
+  .mt-#{$i} {
+    margin-top: $i * 1px;
+  }
+  .mb-#{$i} {
+    margin-bottom: $i * 1px;
+  }
+  .ml-#{$i} {
+    margin-left: $i * 1px;
+  }
+  .mr-#{$i} {
+    margin-right: $i * 1px;
+  }
+  .p-#{$i} {
+    padding: $i * 1px;
+  }
+  .pt-#{$i} {
+    padding-top: $i * 1px;
+  }
+  .pb-#{$i} {
+    padding-bottom: $i * 1px;
+  }
+  .pl-#{$i} {
+    padding-left: $i * 1px;
+  }
+  .pr-#{$i} {
+    padding-right: $i * 1px;
+  }
+}
