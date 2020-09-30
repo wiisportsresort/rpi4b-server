@@ -105,7 +105,7 @@ export default <Configuration>{
       /.*\/generated\/iconSvgPaths.*/,
       path.resolve(__dirname, 'src/iconSvgPaths.js')
     ),
-    new EnvironmentPlugin('BLUEPRINT_NAMESPACE'),
+    new EnvironmentPlugin({ BLUEPRINT_NAMESPACE: 'bp3' }),
     new ScriptExtHTMLPlugin({ defaultAttribute: 'defer' }),
     new FilterWarningsPlugin({
       exclude: [
